@@ -1,0 +1,106 @@
+Two Pointers Technique
+
+The Two Pointers Technique is a fundamental approach in solving problems related to arrays and strings. It involves maintaining two variables (pointers) that traverse the data structure in a way that optimizes the solution. This technique is commonly used to achieve linear time complexity, making it highly efficient for a wide range of problems.
+
+Key Concepts
+
+Two pointers can be implemented in various ways depending on the problem. The two most common patterns are:
+
+1. Pointers Moving Towards Each Other
+
+This method is useful when analyzing an array or string to find specific relationships or conditions between elements.
+
+General Steps:
+
+Initialize one pointer (left) at the start and the other pointer (right) at the end of the array or string.
+
+Use a loop to process elements while left <= right.
+
+Depending on the problem, adjust the pointers by incrementing left, decrementing right, or both.
+
+Example Problem:
+
+Find the Pair with a Given Sum
+
+Given a sorted array, find two numbers that sum up to a target.
+Java Implementation:
+    public static int[] twoSum(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == target) {
+                return new int[]{left, right};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[]{};
+    }
+
+Complexity Analysis:
+  Time Complexity
+    Pointers Moving Towards Each Other: O(n), where n is the size of the array or string. Each pointer moves at most n steps.
+
+  Space Complexity
+    If no additional space is used (in-place operations), the space complexity is O(1).
+
+2. Pointers Traversing Two Iterables
+
+This method is used when working with two arrays or strings simultaneously.
+
+General Steps:
+
+Initialize two pointers (i and j), one for each iterable.
+
+Use a loop to process elements until one or both pointers reach the end.
+
+Increment one or both pointers based on the problem's conditions.
+
+Example Problem:
+
+Merge Two Sorted Arrays
+
+Given two sorted arrays, merge them into a single sorted array.
+Java Implementation:
+  public static List<Integer> mergeArrays(int[] arr1, int[] arr2) {
+        List<Integer> merged = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                merged.add(arr1[i++]);
+            } else {
+                merged.add(arr2[j++]);
+            }
+        }
+
+        while (i < arr1.length) {
+            merged.add(arr1[i++]);
+        }
+
+        while (j < arr2.length) {
+            merged.add(arr2[j++]);
+        }
+
+        return merged;
+    }
+
+Complexity Analysis:
+  Time Complexity
+    Pointers Traversing Two Iterables: O(n + m), where n and m are the lengths of the two arrays or strings.
+
+  Space Complexity
+    If additional storage (e.g., a new array) is required, the space complexity becomes O(n) or O(n + m), depending on the method.
+
+
+Advantages of Two Pointers
+  Efficient traversal of data structures.
+  Simple to implement for linear-time solutions.
+  Reduces nested loops in many problems.
+
+Practice Problems
+  Leetcode #167: Two Sum II - Input Array Is Sorted
+  Leetcode #88: Merge Sorted Array
+  Leetcode #283: Move Zeroes
